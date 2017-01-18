@@ -43,7 +43,7 @@ class GiftedChat extends React.Component {
     this._isMounted = false;
     this._keyboardHeight = 0;
     this._bottomOffset = props.bottomOffset || 0;
-    this._maxHeight = null;
+    this._maxHeight = props.height;
     this._touchStarted = false;
     this._isFirstLayout = true;
     this._isTypingDisabled = false;
@@ -415,7 +415,7 @@ class GiftedChat extends React.Component {
                 // fix an issue when keyboard is dismissing during the initialization
                 const layout = e.nativeEvent.layout;
                 if (this.getMaxHeight() !== layout.height && this.getIsFirstLayout() === true) {
-                  this.setMaxHeight(layout.height);
+                  // this.setMaxHeight(layout.height);
                   this.setState({
                     messagesContainerHeight: this.prepareMessagesContainerHeight(this.getMaxHeight() - this.getMinInputToolbarHeight() + this.getBottomOffset()),
                   });
@@ -437,7 +437,7 @@ class GiftedChat extends React.Component {
         style={styles.container}
         onLayout={(e) => {
           const layout = e.nativeEvent.layout;
-          this.setMaxHeight(layout.height);
+          // this.setMaxHeight(layout.height);
           InteractionManager.runAfterInteractions(() => {
             this.setState({
               isInitialized: true,
